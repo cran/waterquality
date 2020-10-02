@@ -1,112 +1,111 @@
-## ----setup, include = FALSE----------------------------------------------
+## ----setup, include = FALSE---------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  echo = TRUE,
-  fig.height = 5,
-  fig.width = 7
-)
+  echo = TRUE)
 
-## ----worldview2, echo=FALSE----------------------------------------------
-worldview_2 = tibble::tribble(
-  ~`Band Number`, ~`Band Name`,           ~`Band Center (nm)`,                                  
-  1,            "Coastal",                  0.425,                                                 
-  2,            "Blue",                     0.480,
-  3,            "Green",                    0.545,
-  4,            "Yellow",                   0.605,
-  5,            "Red",                      0.660,
-  6,            "Red Edge",                 0.725,
-  7,            "NIR-1",                    0.833,
-  8,            "NIR-2",                    0.950 
-)
-
-knitr::kable(worldview_2, align = c("l", "r", "r"), caption = "Worldview-2")
-
-## ----sentinel2, echo=FALSE-----------------------------------------------
-sentinel_2 = tibble::tribble(
-  ~`Band Number`, ~`Band Name`,           ~`Band Center (nm)`,
-  1,            "Coastal Blue",             0.443,
-  2,            "Blue",                     0.490,
-  3,            "Green",                    0.560,
-  4,            "Red",                      0.665,
-  5,            "Vegetation Red Edge",      0.705,
-  6,            "Vegetation Red Edge",      0.740,
-  7,            "Vegetation Red Edge",      0.783,
-  8,            "NIR",                      0.842,
-  9,            "Narrow NIR",               0.865
-)
-
-knitr::kable(sentinel_2, align = c("l", "r", "r"), caption = "Sentinel-2")
-
-## ----landsat8, echo=FALSE------------------------------------------------
-landsat_8 = tibble::tribble(
-  ~`Band Number`, ~`Band Name`,           ~`Band Center (nm)`,
-  1,            "Coastal",                  0.443,
-  2,            "Blue",                     0.482,
-  3,            "Green",                    0.562,
-  4,            "Red",                      0.655,
-  5,            "NIR",                      0.865,
-  6,            "SWIR-1",                   1.609,
-  7,            "SWIR-2",                   2.201 
-)
-knitr::kable(landsat_8, align = c("l", "r", "r"), caption = "Landsat-8")
-
-## ----meris, echo=FALSE---------------------------------------------------
-meris = tibble::tribble(
-  ~`Band Number`, ~`Band Name`,           ~`Band Center (nm)`,
-  1,            "Coastal",                  0.413,
-  2,            "Blue",                     0.443,
-  3,            "Blue-2",                   0.490,
-  4,            "Yellow",                   0.510,
-  5,            "Green",                    0.560,
-  6,            "Red",                      0.620,
-  7,            "Red-2",                    0.665,
-  8,            "Chlorophyll_Fl",           0.681,
-  9,            "Red-Edge",                 0.709,
-  10,           "Red-Edge-2",               0.754,
-  11,           "Red-Edge-3",               0.761,
-  12,           "Red-Edge-4",               0.779,
-  13,           "NIR-1",                    0.865,
-  14,           "NIR-2",                    0.885,
-  15,           "NIR-3",                    0.900
-  )
-knitr::kable(meris, align = c("l", "r", "r"), caption = "MERIS")
-
-
-## ----modis, echo=FALSE---------------------------------------------------
-modis = tibble::tribble(
-  ~`Band Number`, ~`Band Name`,           ~`Band Center (nm)`,
-  1,            "Red",                      0.645,
-  2,            "NIR",                      0.859
-)
-knitr::kable(modis, align = c("l", "r", "r"), caption = "MODIS")
-
-## ---- message=FALSE------------------------------------------------------
+## ---- results='hide', message=FALSE, warning=FALSE----------------------------
 library(waterquality)
 library(raster)
 Harsha <- stack(system.file("raster/S2_Harsha.tif", package = "waterquality"))
 
-## ------------------------------------------------------------------------
+## ----results='hide', message=FALSE, warning=FALSE-----------------------------
 Harsha_Am092Bsub <- wq_calc(raster_stack = Harsha, 
                             alg = "Am092Bsub", 
                             sat = "sentinel2")
+
+## ---- fig.height = 5, fig.width = 6-------------------------------------------
 plot(Harsha_Am092Bsub)
 
-## ------------------------------------------------------------------------
+## ----results='hide', message=FALSE, warning=FALSE-----------------------------
 Harsha_Multiple <- wq_calc(raster_stack = Harsha,
                            alg = c("Am092Bsub", "Go04MCI", "Da052BDA"), 
                            sat = "sentinel2")
+
+## ---- fig.height = 5, fig.width = 6-------------------------------------------
 plot(Harsha_Multiple) 
 
-## ------------------------------------------------------------------------
+## ----results='hide', message=FALSE, warning=FALSE-----------------------------
 Harsha_PC <- wq_calc(Harsha,
                      alg = "phycocyanin", 
                      sat = "sentinel2")
+
+## ---- fig.height = 5, fig.width = 6-------------------------------------------
 plot(Harsha_PC) 
 
-## ------------------------------------------------------------------------
+## ---- results='hide', message=FALSE, warning=FALSE----------------------------
 Harsha_All <- wq_calc(Harsha, 
                       alg = "all",
                       sat = "sentinel2")
-plot(Harsha_All) # Only displays first 12 of 28
+
+## ----fig.height = 5, fig.width = 6--------------------------------------------
+plot(Harsha_All) # Only displays first 16 of 28
+
+## ---- results='hide', message=FALSE, warning=FALSE----------------------------
+library(waterquality)
+library(raster)
+library(tmap)
+library(sf)
+s2 = stack(system.file("raster/S2_Harsha.tif", package = "waterquality"))
+MM12NDCI = wq_calc(s2, alg = "MM12NDCI", sat = "sentinel2")
+samples = st_read(system.file("raster/Harsha_Simple_Points_CRS.gpkg", package = "waterquality"))
+lake_extent = st_read(system.file("raster/Harsha_Lake_CRS.gpkg", package = "waterquality"))
+
+## ----fig.height = 5, fig.width = 6--------------------------------------------
+Map_WQ_raster(WQ_raster = MM12NDCI,
+              sample_points = samples,
+              map_title= "Water Quality Map",
+              raster_style = "quantile",
+              histogram = TRUE)
+
+
+## ----fig.height = 5, fig.width = 6--------------------------------------------
+Map_WQ_basemap(WQ_extent = lake_extent,
+              sample_points = samples,
+              WQ_parameter = "Chl_ugL",
+              map_title= "Water Quality Map",
+              points_style = "quantile",
+              histogram = TRUE)
+
+
+## ---- eval = FALSE------------------------------------------------------------
+#  #Input raster image
+#  wq_raster <- stack("C:/temp/my_raster.tif")
+#  
+#  #Input shapefile
+#  wq_samples <- shapefile('C:/temp/my_samples.shp')
+#  
+#  #Extract values from raster and combine with shapefile
+#  waterquality_data <- data.frame(wq_samples, extract(wq_raster, wq_samples))
+#  
+#  #Export results as csv file
+#  write.csv(waterquality_data, file = "C:/temp/waterquality_data.csv")
+
+## ---- results='hide', message=FALSE, warning=FALSE----------------------------
+library(waterquality)
+library(caret)
+df <- read.csv(system.file("raster/waterquality_data.csv", package = "waterquality"))
+
+## ---- message=FALSE, warning=FALSE--------------------------------------------
+extract_lm(parameter = "Chl_ugL", algorithm = "MM12NDCI", df = df)
+
+## ---- message=FALSE, warning=FALSE--------------------------------------------
+extract_lm_cv(parameter = "Chl_ugL", algorithm = "MM12NDCI",
+                                       df = df, train_method = "lm", control_method = "repeatedcv",
+                                       folds = 3, nrepeats = 5)
+
+## ---- message=FALSE, warning=FALSE--------------------------------------------
+# Create series of strings to be used for parameters and algorithms arguments
+algorithms <- c(names(df[6:10]))
+parameters <- c(names(df[3:5]))
+extract_lm_cv_multi_results <- extract_lm_cv_multi(parameters = parameters, algorithms = algorithms,
+                                                   df = df, train_method = "lm", control_method = "repeatedcv",
+                                                   folds = 3, nrepeats = 5)
+head(extract_lm_cv_multi_results)
+
+## ---- message=FALSE, warning=FALSE--------------------------------------------
+extract_lm_cv_all_results <- extract_lm_cv_all(parameters = parameters, df = df,
+                                                 train_method = "lm", control_method = "repeatedcv",
+                                                 folds = 3, nrepeats = 5)
+head(extract_lm_cv_all_results)
 
