@@ -59,14 +59,14 @@ Map_WQ_raster(WQ_raster = MM12NDCI,
               histogram = TRUE)
 
 
-## ----fig.height = 5, fig.width = 6--------------------------------------------
-Map_WQ_basemap(WQ_extent = lake_extent,
-              sample_points = samples,
-              WQ_parameter = "Chl_ugL",
-              map_title= "Water Quality Map",
-              points_style = "quantile",
-              histogram = TRUE)
-
+## ----fig.height = 5, fig.width = 6, eval=FALSE--------------------------------
+#  Map_WQ_basemap(WQ_extent = lake_extent,
+#                sample_points = samples,
+#                WQ_parameter = "Chl_ugL",
+#                map_title= "Water Quality Map",
+#                points_style = "quantile",
+#                histogram = TRUE)
+#  
 
 ## ---- eval = FALSE------------------------------------------------------------
 #  #Input raster image

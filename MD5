@@ -1,9 +1,9 @@
-829704d9033fe5f4a1f2b5c63225dc6c *DESCRIPTION
+41df9d987804f4bdaa10ef4f75097911 *DESCRIPTION
 2d66422751bdc91f83827c125ae3b4a3 *LICENSE
 09e800a04e053e4bc45f4e59ceb88c01 *NAMESPACE
 5ce590cf4136a09aaf00c6dbf7a0bcb9 *R/algorithms.R
 0e369a3f737c51c8b1f6a72df1a3adbd *R/extract_lm_functions.R
-d3c39991072da186001948e132ae76e7 *R/map_wq.R
+0ec4880c5129977cb60cd88328dacc6f *R/map_wq.R
 3ae23ff1c90581c3e5651878b3705fff *R/utils-pipe.R
 f4f774b4af9e399ecfd7dc4a2f4e6939 *R/waterquality-package.R
 dd93a9bcecafb9334fe90f2a3e2c118c *R/wq_algorithms.R
@@ -12,9 +12,9 @@ f2b6b33fdc247a236f3f8280145abfe9 *R/wq_calc.R
 d7bde12a7f2f8f2438daf1bb446fe645 *build/vignette.rds
 271d6835cd5243ac59c70861e00fff20 *data/wq_algorithms.rda
 602a26c147e139947b12aa771d7f40ea *inst/CITATION
-dc3274ca6effa0b834a31b83f182270c *inst/doc/waterquality_vignette.R
-453b4b885db0d454ab226dac861aa726 *inst/doc/waterquality_vignette.Rmd
-c7f95db9b0d31883182206b33046a3b2 *inst/doc/waterquality_vignette.html
+463ce1bec3aa7478e6bd6d7cb2d51bde *inst/doc/waterquality_vignette.R
+907be814f1d903c86ea19ac29a881040 *inst/doc/waterquality_vignette.Rmd
+a0cdf484b408ac78bb5b172f5b346c86 *inst/doc/waterquality_vignette.html
 32a6d50d7148e1da90e7cf0a2f24bae4 *inst/raster/Harsha_Lake.gpkg
 bd3552fd46f83348d6ffa810121c42a8 *inst/raster/Harsha_Lake_CRS.gpkg
 ae4fe7de9d69dc630d986d33850fae1f *inst/raster/Harsha_Simple_Points_CRS.gpkg
@@ -82,4 +82,4 @@ b9ded1269978b4fbf70a6e759dbdd694 *man/wq_calc.Rd
 01c78deb03598b6923cad7bf2bf51797 *tests/testthat.R
 1f94611ad83f7a1e8990accd471733db *tests/testthat/test-calc.R
 2132116c00192d6155766ee8a0bbc475 *tests/testthat/test-data.R
-453b4b885db0d454ab226dac861aa726 *vignettes/waterquality_vignette.Rmd
+907be814f1d903c86ea19ac29a881040 *vignettes/waterquality_vignette.Rmd
