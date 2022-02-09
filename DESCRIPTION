@@ -1,6 +1,6 @@
 Package: waterquality
 Title: Satellite Derived Water Quality Detection Algorithms
-Version: 0.2.6
+Version: 0.3.0
 Authors@R: c(person("Richard", "Johansen", email = "richard.a.johansen@erdc.dren.mil", 
     role = c("aut", "cre"), comment = c(ORCID = "0000-0003-4287-9677")),
     person("Jakub", "Nowosad", email="nowosad.jakub@gmail.com",
@@ -28,7 +28,7 @@ URL: https://github.com/RAJohansen/waterquality
 BugReports: https://github.com/RAJohansen/waterquality/issues
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2020-10-21 16:39:28 UTC; RDEL1RAJ
+Packaged: 2022-02-09 16:26:33 UTC; RDEL1RAJ
 Author: Richard Johansen [aut, cre] (<https://orcid.org/0000-0003-4287-9677>),
   Jakub Nowosad [aut] (<https://orcid.org/0000-0002-1057-3721>),
   Molly Reif [aut] (<https://orcid.org/0000-0003-4207-1459>),
@@ -36,4 +36,4 @@ Author: Richard Johansen [aut, cre] (<https://orcid.org/0000-0003-4287-9677>),
   U.S. Army Corps of Engineers [fnd]
 Maintainer: Richard Johansen <richard.a.johansen@erdc.dren.mil>
 Repository: CRAN
-Date/Publication: 2020-10-21 18:50:02 UTC
+Date/Publication: 2022-02-09 16:50:02 UTC

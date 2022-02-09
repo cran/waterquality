@@ -4,14 +4,14 @@
 \alias{Wy08CI}
 \title{Wy08CI  algorithm}
 \usage{
-Wy08CI(w686, w672, w715)
+Wy08CI(w681, w665, w709)
 }
 \arguments{
-\item{w686}{numeric. Value at wavelength of 686 nm}
+\item{w681}{numeric. Value at wavelength of 681 nm}
 
-\item{w672}{numeric. Value at wavelength of 672 nm}
+\item{w665}{numeric. Value at wavelength of 665 nm}
 
-\item{w715}{numeric. Value at wavelength of 715 nm}
+\item{w709}{numeric. Value at wavelength of 709 nm}
 }
 \value{
 RasterLayer or numeric
@@ -30,12 +30,31 @@ Other algorithms:
 \code{\link{Be162B643sub629}()},
 \code{\link{Be162B700sub601}()},
 \code{\link{Be162BsubPhy}()},
-\code{\link{Be16FLHBlueRedNIR}()},
-\code{\link{Be16FLHGreenRedNIR}()},
-\code{\link{Be16FLHVioletRedNIR}()},
-\code{\link{Be16FLHblue}()},
-\code{\link{Be16FLHviolet}()},
-\code{\link{Be16MPI}()},
+\code{\link{Be16FLHBlueRedNIR_LS8}()},
+\code{\link{Be16FLHBlueRedNIR_MERIS}()},
+\code{\link{Be16FLHBlueRedNIR_OLCI}()},
+\code{\link{Be16FLHBlueRedNIR_S2}()},
+\code{\link{Be16FLHBlueRedNIR_WV2}()},
+\code{\link{Be16FLHGreenRedNIR_LS8}()},
+\code{\link{Be16FLHGreenRedNIR_MERIS}()},
+\code{\link{Be16FLHGreenRedNIR_OLCI}()},
+\code{\link{Be16FLHGreenRedNIR_S2}()},
+\code{\link{Be16FLHGreenRedNIR_WV2}()},
+\code{\link{Be16FLHVioletRedNIR_LS8}()},
+\code{\link{Be16FLHVioletRedNIR_MERIS}()},
+\code{\link{Be16FLHVioletRedNIR_OLCI}()},
+\code{\link{Be16FLHVioletRedNIR_S2}()},
+\code{\link{Be16FLHVioletRedNIR_WV2}()},
+\code{\link{Be16FLHblue_LS8}()},
+\code{\link{Be16FLHblue_MERIS}()},
+\code{\link{Be16FLHblue_OLCI}()},
+\code{\link{Be16FLHblue_S2}()},
+\code{\link{Be16FLHblue_WV2}()},
+\code{\link{Be16FLHviolet_LS8}()},
+\code{\link{Be16FLHviolet_MERIS}()},
+\code{\link{Be16FLHviolet_OLCI}()},
+\code{\link{Be16FLHviolet_S2}()},
+\code{\link{Be16FLHviolet_WV2}()},
 \code{\link{Be16NDPhyI644over615}()},
 \code{\link{Be16NDPhyI644over629}()},
 \code{\link{Be16NDPhyI}()},
@@ -48,8 +67,6 @@ Other algorithms:
 \code{\link{Go04MCI}()},
 \code{\link{HU103BDA}()},
 \code{\link{Kn07KIVU}()},
-\code{\link{Ku15PhyCI}()},
-\code{\link{Ku15SLH}()},
 \code{\link{MI092BDA}()},
 \code{\link{MM092BDA}()},
 \code{\link{MM12NDCIalt}()},
@@ -66,7 +83,6 @@ Other algorithms:
 \code{\link{TurbFrohn09GreenPlusRedBothOverBlue}()},
 \code{\link{TurbHarr92NIR}()},
 \code{\link{TurbLath91RedOverBlue}()},
-\code{\link{TurbMoore80Red}()},
-\code{\link{Zh10FLH}()}
+\code{\link{TurbMoore80Red}()}
 }
 \concept{algorithms}

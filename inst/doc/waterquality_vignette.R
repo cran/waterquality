@@ -19,7 +19,7 @@ plot(Harsha_Am092Bsub)
 
 ## ----results='hide', message=FALSE, warning=FALSE-----------------------------
 Harsha_Multiple <- wq_calc(raster_stack = Harsha,
-                           alg = c("Am092Bsub", "Go04MCI", "Da052BDA"), 
+                           alg = c("Am092Bsub", "MM12NDCI", "Da052BDA"), 
                            sat = "sentinel2")
 
 ## ---- fig.height = 5, fig.width = 6-------------------------------------------
@@ -27,7 +27,7 @@ plot(Harsha_Multiple)
 
 ## ----results='hide', message=FALSE, warning=FALSE-----------------------------
 Harsha_PC <- wq_calc(Harsha,
-                     alg = "phycocyanin", 
+                     alg = "chlorophyll", 
                      sat = "sentinel2")
 
 ## ---- fig.height = 5, fig.width = 6-------------------------------------------
