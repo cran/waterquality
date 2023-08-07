@@ -6,24 +6,24 @@ knitr::opts_chunk$set(
 
 ## ---- results='hide', message=FALSE, warning=FALSE----------------------------
 library(waterquality)
-library(raster)
-Harsha <- stack(system.file("raster/S2_Harsha.tif", package = "waterquality"))
+library(terra)
+Harsha <- terra::rast(system.file("raster/S2_Harsha.tif", package = "waterquality"))
 
 ## ----results='hide', message=FALSE, warning=FALSE-----------------------------
-Harsha_Am092Bsub <- wq_calc(raster_stack = Harsha, 
-                            alg = "Am092Bsub", 
+Harsha_Am092Bsub <- wq_calc(terraRast = Harsha, 
+                            alg = "MM12NDCI", 
                             sat = "sentinel2")
 
 ## ---- fig.height = 5, fig.width = 6-------------------------------------------
-plot(Harsha_Am092Bsub)
+terra::plot(Harsha_Am092Bsub)
 
 ## ----results='hide', message=FALSE, warning=FALSE-----------------------------
-Harsha_Multiple <- wq_calc(raster_stack = Harsha,
-                           alg = c("Am092Bsub", "MM12NDCI", "Da052BDA"), 
+Harsha_Multiple <- wq_calc(terraRast = Harsha,
+                           alg = c("MM12NDCI", "Am092Bsub", "Da052BDA"), 
                            sat = "sentinel2")
 
 ## ---- fig.height = 5, fig.width = 6-------------------------------------------
-plot(Harsha_Multiple) 
+terra::plot(Harsha_Multiple) 
 
 ## ----results='hide', message=FALSE, warning=FALSE-----------------------------
 Harsha_PC <- wq_calc(Harsha,
@@ -31,7 +31,7 @@ Harsha_PC <- wq_calc(Harsha,
                      sat = "sentinel2")
 
 ## ---- fig.height = 5, fig.width = 6-------------------------------------------
-plot(Harsha_PC) 
+terra::plot(Harsha_PC) 
 
 ## ---- results='hide', message=FALSE, warning=FALSE----------------------------
 Harsha_All <- wq_calc(Harsha, 
@@ -39,17 +39,17 @@ Harsha_All <- wq_calc(Harsha,
                       sat = "sentinel2")
 
 ## ----fig.height = 5, fig.width = 6--------------------------------------------
-plot(Harsha_All) # Only displays first 16 of 28
+terra::plot(Harsha_All) # Only displays first 16 of 28
 
 ## ---- results='hide', message=FALSE, warning=FALSE----------------------------
 library(waterquality)
-library(raster)
+library(terra)
 library(tmap)
 library(sf)
-s2 = stack(system.file("raster/S2_Harsha.tif", package = "waterquality"))
+s2 = terra::rast(system.file("raster/S2_Harsha.tif", package = "waterquality"))
 MM12NDCI = wq_calc(s2, alg = "MM12NDCI", sat = "sentinel2")
-samples = st_read(system.file("raster/Harsha_Simple_Points_CRS.gpkg", package = "waterquality"))
-lake_extent = st_read(system.file("raster/Harsha_Lake_CRS.gpkg", package = "waterquality"))
+samples = terra::vect(system.file("raster/Harsha_Simple_Points_CRS.gpkg", package = "waterquality"))
+lake_extent = terra::vect(system.file("raster/Harsha_Lake_CRS.gpkg", package = "waterquality"))
 
 ## ----fig.height = 5, fig.width = 6--------------------------------------------
 Map_WQ_raster(WQ_raster = MM12NDCI,
@@ -59,24 +59,15 @@ Map_WQ_raster(WQ_raster = MM12NDCI,
               histogram = TRUE)
 
 
-## ----fig.height = 5, fig.width = 6, eval=FALSE--------------------------------
-#  Map_WQ_basemap(WQ_extent = lake_extent,
-#                sample_points = samples,
-#                WQ_parameter = "Chl_ugL",
-#                map_title= "Water Quality Map",
-#                points_style = "quantile",
-#                histogram = TRUE)
-#  
-
 ## ---- eval = FALSE------------------------------------------------------------
 #  #Input raster image
-#  wq_raster <- stack("C:/temp/my_raster.tif")
+#  wq_raster <- terra::rast("C:/temp/my_raster.tif")
 #  
 #  #Input shapefile
-#  wq_samples <- shapefile('C:/temp/my_samples.shp')
+#  wq_samples <- terra::vect('C:/temp/my_samples.shp')
 #  
 #  #Extract values from raster and combine with shapefile
-#  waterquality_data <- data.frame(wq_samples, extract(wq_raster, wq_samples))
+#  waterquality_data <- data.frame(wq_samples, terra::extract(wq_raster, wq_samples))
 #  
 #  #Export results as csv file
 #  write.csv(waterquality_data, file = "C:/temp/waterquality_data.csv")

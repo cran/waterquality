@@ -3,8 +3,6 @@
 
 [![CRAN
 status](http://www.r-pkg.org/badges/version/waterquality)](https://cran.r-project.org/package=waterquality)
-[![Build
-Status](https://travis-ci.org/RAJohansen/waterquality.png?branch=master)](https://travis-ci.org/RAJohansen/waterquality)
 [![codecov](https://codecov.io/gh/RAJohansen/waterquality/branch/master/graph/badge.svg)](https://app.codecov.io/gh/RAJohansen/waterquality)
 ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/waterquality)
 
@@ -44,7 +42,7 @@ Quality”](https://erdc-library.erdc.dren.mil/jspui/bitstream/11681/35053/3/ERD
 Additionally, we have recently developed and published a complementary
 python-based version of **waterquality** compatible with ESRI ArcGIS and
 ArcPro. For more information please visit [“waterquality for ArcGIS Pro
-Toolbox”](https://hdl.handle.net/11681/42240)
+Toolbox”](https://hdl.handle.net/11681/42240).
 
 ## Installation
 
@@ -67,16 +65,36 @@ The main function in this package is `wq_calc()`:
 
 ``` r
 library(waterquality)
-library(raster)
-s2 = stack(system.file("raster/S2_Harsha.tif", package = "waterquality"))
-s2_two_alg = wq_calc(s2, alg = c("MM12NDCI", "Al10SABI"), sat = "sentinel2")
+library(terra)
+s2 = terra::rast(system.file("raster/S2_Harsha.tif", package = "waterquality"))
+MM12NDCI = wq_calc(s2, alg = "MM12NDCI", sat = "sentinel2")
 ```
 
 ``` r
-plot(s2_two_alg)
+Map_WQ_raster(WQ_raster = MM12NDCI,
+              map_title= "Water Quality Map",
+              raster_style = "quantile",
+              histogram = TRUE)
+#> The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,
+#> which was just loaded, will retire in October 2023.
+#> Please refer to R-spatial evolution reports for details, especially
+#> https://r-spatial.org/r/2023/05/15/evolution4.html.
+#> It may be desirable to make the sf package available;
+#> package maintainers should consider adding sf to Suggests:.
+#> The sp package is now running under evolution status 2
+#>      (status 2 uses the sf package in place of rgdal)
 ```
 
-![](man/figures/README-example_output-1.png)<!-- -->
+![](man/figures/README-unnamed-chunk-2-1.png)<!-- -->
+
+## Citation
+
+To cite waterquality in publications, please use:
+
+Johansen R, Nowosad J, Reif M, Emery E (2023). waterquality: Satellite
+Derived Water Quality Detection Algorithms. U.S Army Engineer Research
+and Development Center, Vicksburg, MS, USA. R package version 1.0.0,
+<https://github.com/RAJohansen/waterquality/>.
 
 ## Package Contributions
 
